@@ -1,0 +1,14 @@
+# program to print the letter Z using stars *
+def print_z():
+    rows = 8
+    cols = 8
+
+    for i in range(rows):
+        for j in range(cols):
+            if i == 0 or i == rows - 1 or i + j == cols - 1:
+                print("*", end="")
+            else:
+                print(" ", end="")
+        print()
+
+print_z()
