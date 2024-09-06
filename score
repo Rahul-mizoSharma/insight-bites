@@ -1,0 +1,4 @@
+score = 40
+while score > 1:
+    score = score/2-1
+    print(score, end = '')
