@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data
+categories = ['A', 'B', 'C', 'D', 'E']
+values = [23, 45, 56, 78, 32]
+
+# Create bar chart
+plt.figure(figsize=(10, 6))
+plt.bar(categories, values)
+
+# Customize the chart
+plt.title('Sample Bar Chart')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+
+# Add value labels on top of each bar
+for i, v in enumerate(values):
+    plt.text(i, v, str(v), ha='center', va='bottom')
+
+# Display the chart
+plt.show()
