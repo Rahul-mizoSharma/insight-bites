@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background-color: #34495e;
+            border: 2px solid #ecf0f1;
+        }
+        #game-board {
+            width: 100%;
+            height: 100%;
+        }
+        .snake, .food {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+        }
+        .snake {
+            background-color: #2ecc71;
+            border: 1px solid #27ae60;
+        }
+        .food {
+            background-color: #e74c3c;
+            border: 1px solid #c0392b;
+            border-radius: 50%;
+        }
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #ecf0f1;
+            font-size: 20px;
+        }
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ecf0f1;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-board"></div>
+        <div id="score">Score: 0</div>
+        <div id="message">Press Space to Start</div>
+    </div>
+
+    <script>
+        const gameBoard = document.getElementById('game-board');
+        const scoreElement = document.getElementById('score');
+        const messageElement = document.getElementById('message');
+        const gridSize = 30;
+        const cellSize = 20;
+        let snake = [{x: 15, y: 15}];
+        let food = {};
+        let direction = '';
+        let score = 0;
+        let gameInterval;
+
+        function createFood() {
+            food = {
+                x: Math.floor(Math.random() * gridSize),
+                y: Math.floor(Math.random() * gridSize)
+            };
+        }
+
+        function drawGame() {
+            gameBoard.innerHTML = '';
+            snake.forEach(segment => {
+                const snakeElement = document.createElement('div');
+                snakeElement.style.left = segment.x * cellSize + 'px';
+                snakeElement.style.top = segment.y * cellSize + 'px';
+                snakeElement.classList.add('snake');
+                gameBoard.appendChild(snakeElement);
+            });
+
+            const foodElement = document.createElement('div');
+            foodElement.style.left = food.x * cellSize + 'px';
+            foodElement.style.top = food.y * cellSize + 'px';
+            foodElement.classList.add('food');
+            gameBoard.appendChild(foodElement);
+        }
+
+        function moveSnake() {
+            const head = {...snake[0]};
+            switch(direction) {
+                case 'up': head.y--; break;
+                case 'down': head.y++; break;
+                case 'left': head.x--; break;
+                case 'right': head.x++; break;
+            }
+
+            if (head.x < 0 || head.x >= gridSize || head.y < 0 || head.y >= gridSize) {
+                gameOver();
+                return;
+            }
+
+            if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                gameOver();
+                return;
+            }
+
+            snake.unshift(head);
+
+            if (head.x === food.x && head.y === food.y) {
+                score++;
+                scoreElement.textContent = `Score: ${score}`;
+                createFood();
+            } else {
+                snake.pop();
+            }
+
+            drawGame();
+        }
+
+        function gameOver() {
+            clearInterval(gameInterval);
+            messageElement.textContent = 'Game Over! Press Space to Restart';
+            messageElement.style.display = 'block';
+        }
+
+        function startGame() {
+            snake = [{x: 15, y: 15}];
+            score = 0;
+            scoreElement.textContent = 'Score: 0';
+            direction = ['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)];
+            createFood();
+            drawGame();
+            messageElement.style.display = 'none';
+            clearInterval(gameInterval);
+            gameInterval = setInterval(moveSnake, 100);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case ' ':
+                    if (!gameInterval) startGame();
+                    break;
+                case 'w': if (direction !== 'down') direction = 'up'; break;
+                case 's': if (direction !== 'up') direction = 'down'; break;
+                case 'a': if (direction !== 'right') direction = 'left'; break;
+                case 'd': if (direction !== 'left') direction = 'right'; break;
+            }
+        });
+    </script>
+</body>
+</html>
