@@ -1,0 +1,20 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Load a standard dataset (e.g., Iris dataset)
+iris = sns.load_dataset('iris')
+
+# Create a scatter plot
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=iris, x='sepal_length', y='sepal_width', hue='species', style='species', s=100)
+
+# Add titles and labels
+plt.title('Iris Sepal Length vs Width')
+plt.xlabel('Sepal Length (cm)')
+plt.ylabel('Sepal Width (cm)')
+
+# Show the plot
+plt.legend(title='Species')
+plt.grid()
+plt.show()
