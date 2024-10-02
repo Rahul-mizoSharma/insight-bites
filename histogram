@@ -1,0 +1,25 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Set the random seed for reproducibility
+np.random.seed(0)
+
+# Generate random data: 1000 samples from a normal distribution
+data = np.random.randn(1000)
+
+# Create a figure and axis for the plot
+plt.figure(figsize=(10, 6))
+
+# Create histogram
+plt.hist(data, bins=30, alpha=0.7, color='blue', edgecolor='black')
+
+# Add titles and labels
+plt.title('Histogram of Random Data', fontsize=16)
+plt.xlabel('Value', fontsize=14)
+plt.ylabel('Frequency', fontsize=14)
+
+# Add grid for better readability
+plt.grid(axis='y', alpha=0.75)
+
+# Show the plot
+plt.show()
