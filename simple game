@@ -1,0 +1,72 @@
+import random
+
+def generate_number():
+    return random.randint(1, 100)
+
+def player_guess(player_name):
+    while True:
+        try:
+            guess = int(input(f"{player_name}, enter your guess (1-100): "))
+            if 1 <= guess <= 100:
+                return guess
+            else:
+                print("Please enter a number between 1 and 100.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def play_game():
+    print("Welcome to the Multiplayer Number Guessing Game!")
+    player1_name = input("Enter Player 1's name: ")
+    player2_name = input("Enter Player 2's name: ")
+    
+    player1_score = 0
+    player2_score = 0
+    
+    for round in range(1, 4):  # 3 rounds
+        print(f"\nRound {round}")
+        target_number = generate_number()
+        print(f"I'm thinking of a number between 1 and 100.")
+        
+        player1_attempts = 0
+        player2_attempts = 0
+        
+        while True:
+            # Player 1's turn
+            player1_guess = player_guess(player1_name)
+            player1_attempts += 1
+            
+            if player1_guess == target_number:
+                print(f"Congratulations {player1_name}! You guessed the number in {player1_attempts} attempts.")
+                player1_score += 1
+                break
+            elif player1_guess < target_number:
+                print("Too low.")
+            else:
+                print("Too high.")
+            
+            # Player 2's turn
+            player2_guess = player_guess(player2_name)
+            player2_attempts += 1
+            
+            if player2_guess == target_number:
+                print(f"Congratulations {player2_name}! You guessed the number in {player2_attempts} attempts.")
+                player2_score += 1
+                break
+            elif player2_guess < target_number:
+                print("Too low.")
+            else:
+                print("Too high.")
+    
+    print("\nGame Over!")
+    print(f"{player1_name}'s score: {player1_score}")
+    print(f"{player2_name}'s score: {player2_score}")
+    
+    if player1_score > player2_score:
+        print(f"{player1_name} wins!")
+    elif player2_score > player1_score:
+        print(f"{player2_name} wins!")
+    else:
+        print("It's a tie!")
+
+if __name__ == "__main__":
+    play_game()
