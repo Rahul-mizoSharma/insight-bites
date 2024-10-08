@@ -1,0 +1,81 @@
+import random
+import time
+import os
+
+class SubwaySurfer:
+    def __init__(self):
+        self.lanes = 3
+        self.player_position = 1  # Middle lane
+        self.score = 0
+        self.game_length = 20
+        self.game_speed = 0.5
+
+    def clear_screen(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    def print_game_state(self, obstacles):
+        self.clear_screen()
+        print("Subway Surfer - Text Edition")
+        print(f"Score: {self.score}")
+        print("\n" * 3)
+        
+        for i in range(self.lanes):
+            if i == self.player_position:
+                print("🏃", end="")
+            else:
+                print("  ", end="")
+        print()
+        
+        for obs in obstacles:
+            for i in range(self.lanes):
+                if i == obs[1]:
+                    print("🚧" if obs[0] == "obstacle" else "💰", end="")
+                else:
+                    print("  ", end="")
+            print()
+
+    def move_player(self, direction):
+        if direction == "left" and self.player_position > 0:
+            self.player_position -= 1
+        elif direction == "right" and self.player_position < self.lanes - 1:
+            self.player_position += 1
+
+    def generate_obstacle(self):
+        lane = random.randint(0, self.lanes - 1)
+        obstacle_type = random.choice(["obstacle", "coin"])
+        return [obstacle_type, lane]
+
+    def play(self):
+        obstacles = []
+        for _ in range(self.game_length):
+            if random.random() < 0.5:
+                obstacles.append(self.generate_obstacle())
+            
+            self.print_game_state(obstacles)
+            
+            action = input("Move left (a), right (d), or stay (s): ").lower()
+            if action == 'a':
+                self.move_player("left")
+            elif action == 'd':
+                self.move_player("right")
+            
+            # Check collisions and collect coins
+            for obs in obstacles:
+                if obs[1] == self.player_position:
+                    if obs[0] == "obstacle":
+                        print("Game Over! You hit an obstacle.")
+                        return
+                    elif obs[0] == "coin":
+                        self.score += 10
+                        obstacles.remove(obs)
+            
+            # Move obstacles down
+            obstacles = [[obs[0], obs[1]] for obs in obstacles if obs[1] >= 0]
+            
+            time.sleep(self.game_speed)
+        
+        print(f"Game Over! Your final score is {self.score}")
+
+if __name__ == "__main__":
+    game = SubwaySurfer()
+    game.play()
