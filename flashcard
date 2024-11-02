@@ -1,0 +1,56 @@
+import random
+
+def display_flashcards(flashcards):
+    print("\nYour Flashcards:")
+    for index, (question, answer) in enumerate(flashcards.items(), start=1):
+        print(f"{index}. {question} -> {answer}")
+
+def add_flashcard(flashcards):
+    question = input("Enter the flashcard question: ")
+    answer = input("Enter the flashcard answer: ")
+    flashcards[question] = answer
+    print("Flashcard added!")
+
+def quiz_user(flashcards):
+    if not flashcards:
+        print("No flashcards available. Please add some first.")
+        return
+
+    questions = list(flashcards.keys())
+    random.shuffle(questions)
+    score = 0
+
+    for question in questions:
+        user_answer = input(f"\n{question}: ")
+        if user_answer.strip().lower() == flashcards[question].strip().lower():
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is: {flashcards[question]}")
+
+    print(f"\nYour score: {score}/{len(flashcards)}")
+
+def main():
+    flashcards = {}
+    while True:
+        print("\nFlashcard Quiz Application")
+        print("1. Add Flashcard")
+        print("2. View Flashcards")
+        print("3. Quiz Yourself")
+        print("4. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            add_flashcard(flashcards)
+        elif choice == '2':
+            display_flashcards(flashcards)
+        elif choice == '3':
+            quiz_user(flashcards)
+        elif choice == '4':
+            print("Exiting the application.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
