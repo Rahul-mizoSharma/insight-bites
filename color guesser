@@ -1,0 +1,37 @@
+import random
+import tkinter as tk
+
+def color_guesser():
+    colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink']
+    chosen_color = random.choice(colors)
+    
+    def check_guess():
+        guess = entry.get().lower()
+        if guess == chosen_color:
+            result_label.config(text="Congratulations! You guessed the color!", fg='green')
+        else:
+            result_label.config(text="Wrong guess! Try again.", fg='red')
+
+    # Set up the GUI
+    root = tk.Tk()
+    root.title("Color Guesser Game")
+
+    # Create a frame with the chosen color
+    color_frame = tk.Frame(root, width=200, height=200, bg=chosen_color)
+    color_frame.pack(pady=20)
+
+    # Entry for user guess
+    entry = tk.Entry(root)
+    entry.pack(pady=10)
+
+    # Button to submit guess
+    guess_button = tk.Button(root, text="Guess", command=check_guess)
+    guess_button.pack(pady=5)
+
+    # Label for result
+    result_label = tk.Label(root, text="")
+    result_label.pack(pady=10)
+
+    root.mainloop()
+
+color_guesser()
