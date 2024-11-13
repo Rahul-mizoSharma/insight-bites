@@ -1,0 +1,21 @@
+import random
+
+def tell_joke():
+    jokes = [
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!",
+        "What do you call fake spaghetti? An impasta!",
+        "Why did the bicycle fall over? Because it was two-tired!",
+        "What do you call cheese that isn't yours? Nacho cheese!"
+    ]
+    while True:
+        user_input = input("Type 'tell me a joke' to hear a joke or 'quit' to exit: ").lower()
+        if user_input == 'tell me a joke':
+            print(random.choice(jokes))
+        elif user_input == 'quit':
+            print("Goodbye!")
+            break
+        else:
+            print("I didn't understand that. Please type 'tell me a joke' or 'quit'.")
+
+tell_joke()
