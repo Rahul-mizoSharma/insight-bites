@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #282c34;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    background: #3a3f47;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #61dafb;
+}
+
+.music-list {
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #61dafb;
+    border-radius: 5px;
+    padding: 10px;
+    background: #2c3036;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+    transition: background 0.3s;
+}
+
+li:hover {
+    background: #444;
+}
+
+input[type="text"] {
+    width: calc(100% - 110px);
+    padding: 10px;
+    border: 1px solid #61dafb;
+    border-radius: 5px;
+    background: #2c3036;
+    color: #ffffff;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #61dafb;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #61dafb;
+    color: #282c34;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #21a1f1;
+}
+
+button:focus {
+    outline: none;
+}
