@@ -1,0 +1,38 @@
+class TVShow:
+    def __init__(self, title, rating):
+        self.title = title
+        self.rating = rating
+
+    def __str__(self):
+        return f"{self.title} (Rating: {self.rating})"
+
+class ShowCollection:
+    def __init__(self):
+        self.shows = []
+
+    def add_show(self, show):
+        self.shows.append(show)
+
+    def get_best_shows(self, min_rating):
+        return [show for show in self.shows if show.rating >= min_rating]
+
+def main():
+    collection = ShowCollection()
+    collection.add_show(TVShow("Breaking Bad", 9.5))
+    collection.add_show(TVShow("Game of Thrones", 9.3))
+    collection.add_show(TVShow("Stranger Things", 8.7))
+    collection.add_show(TVShow("The Office", 8.8))
+    collection.add_show(TVShow("Friends", 8.9))
+
+    min_rating = float(input("Enter the minimum rating to filter shows: "))
+    best_shows = collection.get_best_shows(min_rating)
+
+    if best_shows:
+        print("Best TV Shows:")
+        for show in best_shows:
+            print(show)
+    else:
+        print("No shows found with the specified rating.")
+
+if __name__ == "__main__":
+    main()
