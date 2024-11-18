@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Missing Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Find the Missing Number</h1>
+    <p id="numberPattern"></p>
+    <input type="number" id="guessInput" placeholder="Enter missing number">
+    <button onclick="checkGuess()">Submit</button>
+    <div class="message" id="message"></div>
+
+    <script>
+        let numbers = Array.from({length: 10}, (_, i) => i + 1); // Numbers from 1 to 10
+        const missingIndex = Math.floor(Math.random() * numbers.length);
+        const missingNumber = numbers[missingIndex];
+        numbers.splice(missingIndex, 1); // Remove the missing number
+
+        document.getElementById('numberPattern').textContent = `Given numbers: ${numbers.join(', ')}`;
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guessInput').value);
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = userGuess === missingNumber ? `Correct! The missing number is ${missingNumber}.` : "Try again!";
+        }
+    </script>
+
+</body>
+</html>
