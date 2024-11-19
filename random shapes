@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Shape Creator</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+            background-color: bisque;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            width: 250px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .shape {
+            margin-top: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Create a Random Shape</h1>
+    <input type="number" id="sidesInput" placeholder="Enter number of sides">
+    <button onclick="createShape()">Create Shape</button>
+    <div class="shape" id="shape"></div>
+
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createShape() {
+            const sides = parseInt(document.getElementById('sidesInput').value);
+            const shapeElement = document.getElementById('shape');
+            shapeElement.innerHTML = '';
+
+            if (sides < 3 || sides > 10) {
+                shapeElement.textContent = "Please enter a number between 3 and 10.";
+                return;
+            }
+
+            const shape = document.createElement('div');
+            shape.style.width = '100px';
+            shape.style.height = '100px';
+            shape.style.backgroundColor = getRandomColor();
+            shape.style.clipPath = `polygon(${Array.from({length: sides}, (_, i) => 
+                `${50 + 50 * Math.cos((2 * Math.PI * i) / sides)}% ${50 + 50 * Math.sin((2 * Math.PI * i) / sides)}%`).join(', ')})`;
+            shapeElement.appendChild(shape);
+        }
+    </script>
+
+</body>
+</html>
