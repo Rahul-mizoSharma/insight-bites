@@ -1,0 +1,8 @@
+Data Types in Python
+By default Python have these data types:
+
+> strings - used to represent text data, the text is given under quote marks. e.g. "ABCD"
+> integer - used to represent integer numbers. e.g. -1, -2, -3, 100, 20
+> float - used to represent real numbers. e.g. 1.2, 42.42, 1.87654
+> boolean - used to represent True or False or 0,1.
+> complex - used to represent complex numbers. e.g. 1.0 + 2.0j, 1.5 + 2.5j
