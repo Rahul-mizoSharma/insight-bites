@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with OTP Verification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div class="form-container" id="loginForm">
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <input type="email" id="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label>Password</label>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- OTP Verification Modal -->
+        <div class="modal" id="otpModal">
+            <div class="modal-content">
+                <h2>Enter OTP</h2>
+                <p>We have sent an OTP to your email</p>
+                <div class="otp-input-container">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this)">
+                    <input type="text" class="otp-input" maxlength="1" onkeyup="moveToNext(this)">
+                </div>
+                <button onclick="verifyOTP()">Verify OTP</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
