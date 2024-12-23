@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen py-8">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Resume Builder</h1>
+        <div class="resume-builder grid md:grid-cols-2 gap-8">
+            <div class="input-section bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Personal Information</h2>
+                <input type="text" id="name" placeholder="Full Name" class="w-full mb-4 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <input type="text" id="contact" placeholder="Contact Information" class="w-full mb-4 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <textarea id="summary" placeholder="Professional Summary" class="w-full mb-6 p-2 border rounded h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Projects</h2>
+                <div id="projects-container" class="space-y-4">
+                    <div class="project-input space-y-3">
+                        <input type="text" class="project-title w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Project Title">
+                        <input type="text" class="project-duration w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Duration">
+                        <textarea class="project-details w-full p-2 border rounded h-32 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Project Details (separate points with new lines)"></textarea>
+                    </div>
+                </div>
+                <button id="add-project" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">Add Project</button>
+
+                <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4">Education</h2>
+                <div id="education-container" class="space-y-4">
+                    <div class="education-input space-y-3">
+                        <input type="text" class="education-degree w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Degree">
+                        <input type="text" class="education-school w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="School">
+                        <input type="text" class="education-duration w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Duration">
+                        <textarea class="education-details w-full p-2 border rounded h-32 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Education Details (separate points with new lines)"></textarea>
+                    </div>
+                </div>
+                <button id="add-education" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">Add Education</button>
+
+                <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4">Additional Information</h2>
+                <textarea id="additional-info" placeholder="Additional Information (separate points with new lines)" class="w-full p-2 border rounded h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+
+            <div class="preview-section bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-6">Resume Preview</h2>
+                <div id="resume-preview" class="space-y-6">
+                    <h1 id="preview-name" class="text-3xl font-bold text-gray-800"></h1>
+                    <p id="preview-contact" class="text-gray-600"></p>
+                    
+                    <div class="preview-section">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-2">Summary</h2>
+                        <p id="preview-summary" class="text-gray-600"></p>
+                    </div>
+
+                    <div class="preview-section">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-2">Projects</h2>
+                        <div id="preview-projects" class="space-y-4"></div>
+                    </div>
+
+                    <div class="preview-section">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-2">Education</h2>
+                        <div id="preview-education" class="space-y-4"></div>
+                    </div>
+
+                    <div class="preview-section">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-2">Additional Information</h2>
+                        <ul id="preview-additional-info" class="list-disc list-inside text-gray-600"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
